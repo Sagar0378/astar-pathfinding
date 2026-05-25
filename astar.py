@@ -105,7 +105,7 @@ def visualize(grid, path, visited, start, goal):
     BLACK  = [0.15, 0.15, 0.15]  # wall
     BLUE   = [0.53, 0.81, 0.98]  # explored
     YELLOW = [1.00, 0.85, 0.00]  # path
-    GREEN  = [0.18, 0.80, 0.44]  # start
+    GREEN  = [0.0, 1.0, 0.0]  # start
     RED    = [0.91, 0.30, 0.24]  # goal
 
     for r in range(grid.shape[0]):
@@ -131,8 +131,8 @@ def visualize(grid, path, visited, start, goal):
     fig, ax = plt.subplots(figsize=(8, 8))
     ax.imshow(visual, origin='upper')
     ax.set_title("A* Pathfinding — Autonomous Robot Navigation", fontsize=13, fontweight='bold')
-    ax.set_xticks(np.arange(-0.5, GRID_COLS, 1), minor=True)
-    ax.set_yticks(np.arange(-0.5, GRID_ROWS, 1), minor=True)
+    ax.set_xticks(np.arange(-0.5, GRID_COLS + 1, 1), minor=True)
+    ax.set_yticks(np.arange(-0.5, GRID_ROWS + 1, 1), minor=True)
     ax.grid(which='minor', color='gray', linewidth=0.3)
     ax.tick_params(which='both', bottom=False, left=False,
                    labelbottom=False, labelleft=False)
@@ -145,7 +145,7 @@ def visualize(grid, path, visited, start, goal):
         mpatches.Patch(color=BLUE,   label='Explored Cells'),
         mpatches.Patch(color=YELLOW, label=f'Optimal Path ({len(path)} steps)'),
     ]
-    ax.legend(handles=legend, loc='upper left',
+    ax.legend(handles=legend, loc='lower right',
               fontsize=9, framealpha=0.9)
 
     plt.tight_layout()
